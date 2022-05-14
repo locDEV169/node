@@ -15,7 +15,7 @@ const mimeTypes = {
 var portName = "localhost";
 var port = "8080";
 
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
     var MY_URL = url.parse(req.url).pathname;
     var fileName = path.join(process.cwd(), unescape(MY_URL));
     console.log("File you are looking for is:" + fileName);
@@ -52,6 +52,8 @@ http.createServer((req, res) => {
         res.write("500 Internal Error");
         res.end();
     }
-}).listen(port, portName, () => {
+});
+
+server.listen(port, portName, () => {
     console.log(`Server is running on server http://${portName}:${port}`);
 });
